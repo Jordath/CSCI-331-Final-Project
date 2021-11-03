@@ -1,3 +1,7 @@
+# Link to the Google Drive node_modules folder.
+https://drive.google.com/drive/folders/1RKgdgwtwSrqS2tPLWsQZanlOXIyJsTRY?usp=sharing
+Must include this file in the directory for everything to function properly.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
