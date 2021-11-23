@@ -26,22 +26,10 @@ export default function NestedList() {
       aria-labelledby="nested-list-subheader"
       subheader={
         <ListSubheader component="div" id="nested-list-subheader">
-          Nested List Items
+          Search Results
         </ListSubheader>
       }
     >
-      <ListItemButton>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText primary="Sent mail" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Drafts" />
-      </ListItemButton>
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
