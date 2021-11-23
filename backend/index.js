@@ -1,27 +1,26 @@
-import app from "./server.js"
-import mongodb from "mongodb"
-import dotenv from "dotenv"
-import recipesDAO from "./dao/recipesDAO.js"
-dotenv.config()
-const MongoClient = mongodb.MongoClient
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import mongoose from "mongoose";
+import recipesRoutes from './routes/recipes.js';
 
-const port = process.env.port || 8000
+const app = express();
 
-MongoClient.connect(
-    process.env.RESTREVIEWS_DB_URI,
-    {
-        maxPoolSize: 50,
-        wtimeoutMS: 2500,
-        useNewUrlParser: true
-    }
-)
-.catch(err => {
-    console.error(err.stack)
-    process.exit(1)
-})
-.then(async client => {
-    await recipesDAO.injectDB(client)
-    app.listen(port, () => {
-        console.log(`listening on port ${port}`)
-    })
-})
+app.use('/recipes', recipesRoutes);
+
+app.use(bodyParser.json({limit: "20mb", extended:true}));
+app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));
+
+app.use(cors());
+
+const CONNECTION_URL = 'mongodb+srv://BMarceau:WinterIsComing1@cluster0.1i945.mongodb.net/recDB?retryWrites=true&w=majority';
+
+const PORT = process.env.PORT || 5000;
+
+mongoose.connect(CONNECTION_URL, {
+    useNewUrlParser:true, useUnifiedTopology:true
+}).then(() => app.listen(PORT, () =>
+    console.log(`Connection is established and running on port: ${PORT}`)
+)).catch((err) => console.log(err.message));
+
+//mongoose.set(`useFindAndModify`,false);

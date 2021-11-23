@@ -1,92 +1,43 @@
+import './App.css';
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { mergeClasses } from '@material-ui/styles';
+import Recipes from './components/showRecipes/showRecipes.js';
+import Search from './components/searchRecipes/searchRecipes.js';
+import useStyles from './style';
 
-import React from 'react';
+function App() {
+  const classes = useStyles();
+  return (
+    <div className="App">
+        <Container maxWidth ="lg">
+          <AppBar className={classes.AppBar} position="static" color="inherit" >
+            <Typography className={classes.heading} variant="h2" align="center">
+              Recipes 
+            </Typography>
+          </AppBar>
 
-export default class CustomerForm extends React.Component {
-  constructor(props) {
-    super(props);
+          <Grow in>
+            <Container>
+              <Grid container justify="space-between" alignItems="stretch">
+                <Grid item xs={12} sm={4}>
+                  <AppBar className={classes.appBar} position="static" color="inherit">
+                    <Search />
+                  </AppBar>
+                </Grid>
+                <Grid item xs={12} sm={7}>
+                  <AppBar className={classes.appBar} position="static" color="inherit">
+                    <Recipes />
+                  </AppBar>
+                </Grid>
 
-    this.state = {
-      customer: {
-        ingredient1: props.ingredient1,
-        ingredient2: props.ingredient2,
-        ingredient3: props.ingredient3,
-        ingredient4: props.ingredient4,
-        ingredient5: props.ingredient5,
-      }
-    }
-  }
 
-  handleIngredient1Changed(event) {
-    var customer = this.state.customer;
-    customer.ingredient1 = event.target.value;
-    this.setState({ customer: customer });
-  }
+              </Grid>
+            </Container>
+          </Grow>
 
-  handleIngredient2Changed(event) {
-    var customer = this.state.customer;
-    customer.ingredient2 = event.target.value;
-    this.setState({ customer: customer });
-  }
-
-  handleIngredient3Changed(event) {
-    var customer = this.state.customer;
-    customer.ingredient3 = event.target.value;
-    this.setState({ customer: customer });
-  }
-
-  handleIngredient4Changed(event) {
-    var customer = this.state.customer;
-    customer.ingredient4 = event.target.value;
-    this.setState({ customer: customer });
-  }
-
-  handleIngredient5Changed(event) {
-    var customer = this.state.customer;
-    customer.ingredient5 = event.target.value;
-    this.setState({ customer: customer });
-  }
-
-  handleButtonClicked() {
-    console.log(this.state.customer);
-  }
-
-  render() {
-    return (
-      <div>
-        <label>
-          Ingredient 1: 
-        </label>
-        <input type="text" value={this.state.customer.ingredient1} onChange={this.handleIngredient1Changed.bind(this)}/>
-        <br/>
-
-        <label>
-          Ingredient 2: 
-        </label>
-        <input type="text" value={this.state.customer.ingredient2} onChange={this.handleIngredient2Changed.bind(this)}/>
-        <br/>
-
-        <label>
-          Ingredient 3: 
-        </label>
-        <input type="text" value={this.state.customer.ingredient3} onChange={this.handleIngredient3Changed.bind(this)}/>
-        <br/>
-
-        <label>
-          Ingredient 4: 
-        </label>
-        <input type="text" value={this.state.customer.ingredient4} onChange={this.handleIngredient4Changed.bind(this)}/>
-        <br/>
-
-        <label>
-          Ingredient 5: 
-        </label>
-        <input type="text" value={this.state.customer.ingredient5} onChange={this.handleIngredient5Changed.bind(this)}/>
-        <br/>
-
-        <button onClick={this.handleButtonClicked.bind(this)}>
-          Search Recipes
-        </button>
-      </div>
-    );
-  }
+        </Container>
+    </div>
+  )
 }
+
+export default App;
