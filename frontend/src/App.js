@@ -4,6 +4,7 @@ import { mergeClasses } from '@material-ui/styles';
 import Recipes from './components/showRecipes/showRecipes.js';
 import Search from './components/searchRecipes/searchRecipes.js';
 import useStyles from './style';
+// Adding a comment for testing
 
 function App() {
   const classes = useStyles();
